@@ -14,7 +14,7 @@ class ProductScreenViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(children: [
       Image.asset(
-        'assets/images/Product.png',
+        AssetsData.backgroung,
         fit: BoxFit.cover,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
