@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/Features/Splash/Presentation/Views/widgets/SlidingImage.dart';
-import 'package:ecommerce_app/Features/home/presentation/views/home_screen_view.dart';
+import 'package:ecommerce_app/Features/auth/presentations/views/sign_in_screen.dart';
 import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -26,7 +26,7 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
 
   void navigateTo() {
     Future.delayed(const Duration(seconds: 3), () {
-      Get.to(const HomeScreen(),
+      Get.to(const SignInScreen(),
           transition: Transition.fade, duration: KTransitionDurations);
     });
   }

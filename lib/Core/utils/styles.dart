@@ -8,4 +8,7 @@ abstract class Styles {
       fontWeight: FontWeight.bold, color: KPrimaryColor, fontSize: 22);
   static const productDes =
       TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 14);
+  static const signInHead =
+      TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white);
+  static const signInsubtitle = TextStyle(fontSize: 20, color: Colors.white);
 }
