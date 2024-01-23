@@ -1,9 +1,14 @@
 import 'package:ecommerce_app/Core/utils/assets.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
+import 'package:ecommerce_app/Features/auth/presentations/views/widget/custom_textFormFeiled.dart';
 import 'package:flutter/material.dart';
 
 class SignInBody extends StatelessWidget {
-  const SignInBody({super.key});
+  SignInBody({super.key});
+
+  var emailAddressController = TextEditingController();
+
+  var passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -15,23 +20,53 @@ class SignInBody extends StatelessWidget {
           height: MediaQuery.sizeOf(context).height,
           fit: BoxFit.cover,
         ),
-        Column(
-          children: [
-            const Text(
-              'Welcome Back!',
-              style: Styles.signInHead,
-            ),
-            const Text(
-              'Sign in to continue',
-              style: Styles.signInsubtitle,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            TextFormField(),
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Welcome Back!',
+                style: Styles.signInHead,
+              ),
+              const Text(
+                'Sign in to continue',
+                style: Styles.signInsubtitle,
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              CustomTextFormFeiled(
+                controller: emailAddressController,
+                type: TextInputType.emailAddress,
+                label: 'Email Address',
+                prefix: Icons.email,
+                validate: (value) {},
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              CustomTextFormFeiled(
+                controller: passwordController,
+                type: TextInputType.emailAddress,
+                label: 'Password',
+                prefix: Icons.password,
+                validate: (value) {},
+              ),
+            ],
+          ),
         ),
       ],
     );
+  }
+}
+
+class DefaultButton extends StatelessWidget {
+  const DefaultButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }

@@ -11,4 +11,5 @@ abstract class Styles {
   static const signInHead =
       TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white);
   static const signInsubtitle = TextStyle(fontSize: 20, color: Colors.white);
+  static const labeltext = TextStyle(fontSize: 16.0, color: Colors.white);
 }
