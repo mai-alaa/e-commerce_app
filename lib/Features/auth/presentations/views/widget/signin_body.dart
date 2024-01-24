@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/Core/utils/assets.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/widget/custom_textFormFeiled.dart';
+import 'package:ecommerce_app/Features/auth/presentations/views/widget/default_button.dart';
 import 'package:flutter/material.dart';
 
 class SignInBody extends StatelessWidget {
@@ -54,19 +55,18 @@ class SignInBody extends StatelessWidget {
                 prefix: Icons.password,
                 validate: (value) {},
               ),
+              const SizedBox(
+                height: 50,
+              ),
+              const DefaultButton(),
+              const SizedBox(
+                height: 20,
+              ),
+              const DefaultButton()
             ],
           ),
         ),
       ],
     );
-  }
-}
-
-class DefaultButton extends StatelessWidget {
-  const DefaultButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }
