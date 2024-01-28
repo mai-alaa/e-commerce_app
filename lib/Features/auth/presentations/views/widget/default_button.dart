@@ -1,32 +1,38 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class DefaultButton extends StatelessWidget {
   final String text;
-  IconData? icon;
+  String? image;
   final VoidCallback onPressed;
+  final Color? buttonColor;
   DefaultButton(
-      {super.key, required this.text, required this.onPressed, required icon});
+      {super.key,
+      required this.text,
+      required this.onPressed,
+      required this.image,
+      this.buttonColor});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: MediaQuery.sizeOf(context).height * .050,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ButtonStyle(
-            backgroundColor: const MaterialStatePropertyAll(
-                Color.fromARGB(33, 255, 255, 255)),
-            shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6)))),
+    return Container(
+        decoration: ShapeDecoration(
+          color: buttonColor ?? Colors.white.withOpacity(0.33),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+        ),
+        width: double.infinity,
+        height: MediaQuery.sizeOf(context).height * .050,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (icon != null)
-              Icon(
-                icon,
-                color: Colors.white,
-              ),
+            if (image != null)
+              SizedBox(
+                  width: 30,
+                  height: 30,
+                  child: Image(image: AssetImage(image!))),
+            const SizedBox(
+              width: 5,
+            ),
             Text(
               text,
               style: const TextStyle(
@@ -35,8 +41,6 @@ class DefaultButton extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
+        ));
   }
 }

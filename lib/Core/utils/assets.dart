@@ -5,4 +5,5 @@ class AssetsData {
   static const os = 'assets/images/a.png';
   static const backgroung = 'assets/images/background.png';
   static const backgroundSign = 'assets/images/signin_screen.png';
+  static const googleIcon = 'assets/images/google.png';
 }

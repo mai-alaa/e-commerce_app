@@ -1,22 +1,16 @@
-import 'package:ecommerce_app/Core/utils/assets.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
-import 'package:ecommerce_app/Features/auth/presentations/views/sign_up_screen.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/widget/background_auth.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/widget/custom_textFormFeiled.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/widget/default_button.dart';
-import 'package:ecommerce_app/Features/auth/presentations/views/widget/new_account_button.dart';
 import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 
-// ignore: must_be_immutable
-class SignInBody extends StatelessWidget {
-  SignInBody({super.key});
-
+class SignUpBody extends StatelessWidget {
   var emailAddressController = TextEditingController();
-
   var passwordController = TextEditingController();
+  var phoneController = TextEditingController();
+  var nameController = TextEditingController();
+  SignUpBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +24,22 @@ class SignInBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Welcome Back!',
+                'Welcome In AEB Store!',
                 style: Styles.signInHead,
               ),
               const Text(
-                'Sign in to continue',
+                'Please Enter Your Details',
                 style: Styles.signInsubtitle,
               ),
               space50,
+              CustomTextFormFeiled(
+                controller: nameController,
+                type: TextInputType.name,
+                label: 'Name',
+                prefix: Icons.person,
+                validate: (value) {},
+              ),
+              space30,
               CustomTextFormFeiled(
                 controller: emailAddressController,
                 type: TextInputType.emailAddress,
@@ -45,9 +47,7 @@ class SignInBody extends StatelessWidget {
                 prefix: Icons.email,
                 validate: (value) {},
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              space30,
               CustomTextFormFeiled(
                 controller: passwordController,
                 type: TextInputType.emailAddress,
@@ -55,42 +55,16 @@ class SignInBody extends StatelessWidget {
                 prefix: Icons.password,
                 validate: (value) {},
               ),
+              space30,
+              CustomTextFormFeiled(
+                controller: phoneController,
+                type: TextInputType.phone,
+                label: 'Password',
+                prefix: Icons.phone_android,
+                validate: (value) {},
+              ),
               space50,
-              DefaultButton(
-                text: 'Sign In',
-                onPressed: () {},
-                image: null,
-              ),
-              spacehight,
-              DefaultButton(
-                text: 'Sign In with Google',
-                onPressed: () {},
-                image: AssetsData.googleIcon,
-              ),
-              spacehight,
-              const Row(
-                children: [
-                  Expanded(flex: 3, child: Divider()),
-                  Expanded(
-                    flex: 1,
-                    child: Center(
-                      child: Text(
-                        'OR',
-                        style: Styles.signInsubtitle,
-                      ),
-                    ),
-                  ),
-                  Expanded(flex: 3, child: Divider())
-                ],
-              ),
-              spacehight,
-              DefaultButton(
-                text: 'Continue as a guest',
-                onPressed: () {},
-                image: null,
-                buttonColor: Colors.black,
-              ),
-              const NewAccount()
+              DefaultButton(text: 'Sign Up', onPressed: () {}, image: null)
             ],
           ),
         ),
