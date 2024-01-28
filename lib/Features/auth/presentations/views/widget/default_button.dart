@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class DefaultButton extends StatelessWidget {
-  const DefaultButton({super.key});
+  final String text;
+  IconData? icon;
+  final VoidCallback onPressed;
+  DefaultButton(
+      {super.key, required this.text, required this.onPressed, required icon});
 
   @override
   Widget build(BuildContext context) {
@@ -9,18 +13,28 @@ class DefaultButton extends StatelessWidget {
       width: double.infinity,
       height: MediaQuery.sizeOf(context).height * .050,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ButtonStyle(
             backgroundColor: const MaterialStatePropertyAll(
                 Color.fromARGB(33, 255, 255, 255)),
             shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(6)))),
-        child: const Text(
-          'Sign In',
-          style: TextStyle(
-            fontSize: 25,
-            color: Colors.white,
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (icon != null)
+              Icon(
+                icon,
+                color: Colors.white,
+              ),
+            Text(
+              text,
+              style: const TextStyle(
+                fontSize: 24,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
       ),
     );

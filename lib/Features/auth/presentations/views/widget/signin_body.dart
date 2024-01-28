@@ -58,11 +58,18 @@ class SignInBody extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-              const DefaultButton(),
+              DefaultButton(
+                text: 'Sign In',
+                onPressed: () {},
+                icon: null,
+              ),
               const SizedBox(
                 height: 20,
               ),
-              const DefaultButton()
+              DefaultButton(
+                  text: 'Sign In with Google',
+                  icon: Icons.person,
+                  onPressed: () {})
             ],
           ),
         ),
