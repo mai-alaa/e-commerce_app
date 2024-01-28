@@ -22,25 +22,28 @@ class DefaultButton extends StatelessWidget {
         ),
         width: double.infinity,
         height: MediaQuery.sizeOf(context).height * .050,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (image != null)
-              SizedBox(
-                  width: 30,
-                  height: 30,
-                  child: Image(image: AssetImage(image!))),
-            const SizedBox(
-              width: 5,
-            ),
-            Text(
-              text,
-              style: const TextStyle(
-                fontSize: 24,
-                color: Colors.white,
+        child: MaterialButton(
+          onPressed: onPressed,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (image != null)
+                SizedBox(
+                    width: 30,
+                    height: 30,
+                    child: Image(image: AssetImage(image!))),
+              const SizedBox(
+                width: 5,
               ),
-            ),
-          ],
+              Text(
+                text,
+                style: const TextStyle(
+                  fontSize: 24,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
         ));
   }
 }

@@ -1,14 +1,11 @@
 import 'package:ecommerce_app/Core/utils/assets.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
-import 'package:ecommerce_app/Features/auth/presentations/views/sign_up_screen.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/widget/background_auth.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/widget/custom_textFormFeiled.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/widget/default_button.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/widget/new_account_button.dart';
 import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 
 // ignore: must_be_immutable
 class SignInBody extends StatelessWidget {
