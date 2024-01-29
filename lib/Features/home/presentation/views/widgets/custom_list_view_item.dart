@@ -9,34 +9,42 @@ class CustomListViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 110,
+      width: MediaQuery.of(context).size.width * 0.25,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         elevation: 3,
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 17),
-              child: Container(
-                width: 30,
-                height: 33,
-                decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50))),
-                child: Image.asset(
-                  AssetsData.tornatech3,
-                  fit: BoxFit.fitHeight,
+            Expanded(
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 17),
+                child: Container(
+                  width: 30,
+                  height: 33,
+                  decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50))),
+                  child: Image.asset(
+                    AssetsData.tornatech3,
+                    fit: BoxFit.fitHeight,
+                  ),
                 ),
               ),
             ),
-            const Spacer(),
-            const Spacer(),
-            const Spacer(),
-            const Text('Tornatech', style: Styles.categTitle),
-            const Spacer(),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 6),
-              child: CustomButton(),
+            // const Spacer(),
+            // const Spacer(),
+            // const Spacer(),
+            Expanded(
+                flex: 1,
+                child: const Text('Tornatech', style: Styles.categTitle)),
+            // const Spacer(),
+            Expanded(
+              flex: 1,
+              child: const Padding(
+                padding: EdgeInsets.only(bottom: 6),
+                child: CustomButton(),
+              ),
             )
           ],
         ),
