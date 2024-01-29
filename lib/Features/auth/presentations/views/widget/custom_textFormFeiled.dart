@@ -43,6 +43,7 @@ class _CustomTextFormFeiledState extends State<CustomTextFormFeiled> {
       onChanged: onChange,
       onFieldSubmitted: onSubmit,
       readOnly: readable,
+      style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
           prefixIconColor: Colors.white,
           suffixIconColor: Colors.white,

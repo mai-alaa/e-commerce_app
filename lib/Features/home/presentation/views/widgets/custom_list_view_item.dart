@@ -32,16 +32,11 @@ class CustomListViewItem extends StatelessWidget {
                 ),
               ),
             ),
-            // const Spacer(),
-            // const Spacer(),
-            // const Spacer(),
-            Expanded(
-                flex: 1,
-                child: const Text('Tornatech', style: Styles.categTitle)),
-            // const Spacer(),
-            Expanded(
+            const Expanded(
+                flex: 1, child: Text('Tornatech', style: Styles.categTitle)),
+            const Expanded(
               flex: 1,
-              child: const Padding(
+              child: Padding(
                 padding: EdgeInsets.only(bottom: 6),
                 child: CustomButton(),
               ),

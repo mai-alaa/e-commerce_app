@@ -6,6 +6,8 @@ import 'package:ecommerce_app/Features/home/presentation/views/widgets/rounded_b
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/size_slider.dart';
 import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 class ProductScreenViewBody extends StatelessWidget {
   const ProductScreenViewBody({super.key});
@@ -28,7 +30,9 @@ class ProductScreenViewBody extends StatelessWidget {
                 CustomContainer(
                   child: Center(
                     child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.back();
+                        },
                         icon: const Icon(
                           Icons.arrow_back_ios,
                           color: KPrimaryColor,
