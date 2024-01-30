@@ -1,11 +1,12 @@
 import 'package:ecommerce_app/Core/utils/assets.dart';
+import 'package:ecommerce_app/Core/utils/functions/navigation.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/sign_in_screen.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/sign_up_screen.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/widget/background_auth.dart';
-import 'package:ecommerce_app/Features/auth/presentations/views/widget/custom_textFormFeiled.dart';
-import 'package:ecommerce_app/Features/auth/presentations/views/widget/default_button.dart';
-import 'package:ecommerce_app/Features/auth/presentations/views/widget/default_textButton.dart';
+import 'package:ecommerce_app/Core/widgets/custom_textFormFeiled.dart';
+import 'package:ecommerce_app/Core/widgets/default_button.dart';
+import 'package:ecommerce_app/Core/widgets/default_textButton.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/home_screen_view.dart';
 
 import 'package:ecommerce_app/constants.dart';

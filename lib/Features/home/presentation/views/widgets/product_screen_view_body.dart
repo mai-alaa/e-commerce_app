@@ -2,7 +2,7 @@ import 'package:ecommerce_app/Core/utils/assets.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/custom_container.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/custom_description.dart';
-import 'package:ecommerce_app/Features/home/presentation/views/widgets/rounded_button.dart';
+import 'package:ecommerce_app/Core/widgets/rounded_button.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/size_slider.dart';
 import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
