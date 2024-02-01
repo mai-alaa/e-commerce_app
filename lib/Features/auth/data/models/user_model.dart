@@ -2,7 +2,7 @@ class UserModel {
   String? name;
   String? email;
   String? phone;
-  int? uId;
+  String? uId;
 
   UserModel({this.name, this.email, this.phone, this.uId});
   UserModel.fromJson(Map<String, dynamic>? json) {
