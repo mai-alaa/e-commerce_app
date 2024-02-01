@@ -18,3 +18,5 @@ final class SignInFailureState extends SignInState {
   late String error;
   SignInFailureState(this.error);
 }
+
+final class SignInChangePasswordVisibilityState extends SignInState {}

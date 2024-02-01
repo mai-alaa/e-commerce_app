@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -8,6 +8,8 @@ part 'sign_in_state.dart';
 class SignInCubit extends Cubit<SignInState> {
   SignInCubit() : super(SignInInitial());
   static SignInCubit get(context) => BlocProvider.of(context);
+  bool isPass = true;
+  IconData suffix = Icons.visibility_outlined;
 
   Future<void> signUser(
       {required String email, required String password}) async {
@@ -37,5 +39,11 @@ class SignInCubit extends Cubit<SignInState> {
       }
       emit(SignInFailureState(error));
     }
+  }
+
+  void changePasswordVisibilty() {
+    isPass = !isPass;
+    suffix = isPass ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    emit(SignInChangePasswordVisibilityState());
   }
 }

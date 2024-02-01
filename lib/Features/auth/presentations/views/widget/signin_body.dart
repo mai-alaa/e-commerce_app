@@ -83,7 +83,13 @@ class _SignInBodyState extends State<SignInBody> {
                             controller: passwordController,
                             type: TextInputType.emailAddress,
                             label: 'Password',
+                            isPassword: SignInCubit.get(context).isPass,
                             prefix: Icons.password,
+                            suffix: SignInCubit.get(context).suffix,
+                            suffixPressed: () {
+                              SignInCubit.get(context)
+                                  .changePasswordVisibilty();
+                            },
                             validate: (value) {
                               if (value == null || value.isEmpty) {
                                 return passValidationText.data;

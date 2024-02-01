@@ -129,6 +129,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                               }
                               return null;
                             },
+                            isPassword: false,
                           ),
                           space30,
                           CustomTextFormFeiled(
