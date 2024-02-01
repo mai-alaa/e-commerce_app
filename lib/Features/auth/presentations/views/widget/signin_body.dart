@@ -63,7 +63,8 @@ class SignInBody extends StatelessWidget {
                   DefaultButton(
                     text: 'Sign In',
                     onPressed: () {
-                      navigateTo(context, const HomeScreen());
+                      navigateTo(context, const HomeScreen(),
+                          const Duration(microseconds: 1));
                     },
                     image: null,
                   ),
@@ -100,7 +101,8 @@ class SignInBody extends StatelessWidget {
                     text: 'Don\'t have an account?',
                     presstext: 'Sign Up',
                     function: () {
-                      navigateTo(context, const SignUpScreen());
+                      navigateTo(context, const SignUpScreen(),
+                          const Duration(milliseconds: 1));
                     },
                   )
                 ],

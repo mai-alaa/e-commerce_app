@@ -41,7 +41,8 @@ class HomeScreenBody extends StatelessWidget {
                     DefaultTextButton(
                         text: '',
                         function: () {
-                          navigateTo(context, const ProductScreenView());
+                          navigateTo(context, const ProductScreenView(),
+                              const Duration(milliseconds: 1));
                         },
                         presstext: 'View All')
                   ],

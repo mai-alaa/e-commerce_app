@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:ecommerce_app/Core/utils/functions/navigation.dart';
+import 'package:ecommerce_app/Core/utils/functions/toasts_message.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
 import 'package:ecommerce_app/Features/auth/presentations/manager/cubit/user_data_cubit.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/sign_in_screen.dart';
@@ -12,14 +13,25 @@ import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignUpBody extends StatelessWidget {
+class SignUpBody extends StatefulWidget {
+  const SignUpBody({super.key});
+
+  @override
+  State<SignUpBody> createState() => _SignUpBodyState();
+}
+
+class _SignUpBodyState extends State<SignUpBody> {
   var emailAddressController = TextEditingController();
+
   var passwordController = TextEditingController();
+
   var phoneController = TextEditingController();
+
   var nameController = TextEditingController();
+
   var formKey = GlobalKey<FormState>();
 
-  SignUpBody({super.key});
+  bool isPass = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +40,14 @@ class SignUpBody extends StatelessWidget {
       child: BlocConsumer<UserDataCubit, UserDataState>(
         listener: (context, state) {
           if (state is CreateUserSucessState) {
-            navigateTo(context, const HomeScreen());
+            navigateTo(
+              context,
+              const HomeScreen(),
+              const Duration(microseconds: 1),
+            );
           }
           if (state is CreateUserFailureState) {
-            print('Failed to create account');
+            showToast(text: state.error, state: ToastStates.error);
           }
         },
         builder: (context, state) {
@@ -85,12 +101,31 @@ class SignUpBody extends StatelessWidget {
                           space30,
                           CustomTextFormFeiled(
                             controller: passwordController,
+                            onSubmit: (value) {
+                              if (formKey.currentState!.validate()) {
+                                UserDataCubit.get(context).userRegister(
+                                    email: emailAddressController.text,
+                                    password: passwordController.text,
+                                    name: nameController.text,
+                                    phone: phoneController.text);
+                              }
+                            },
                             type: TextInputType.emailAddress,
                             label: 'Password',
                             prefix: Icons.password,
+                            suffix: isPass
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined,
+                            suffixPressed: () {
+                              setState(() {
+                                isPass = !isPass;
+                              });
+                            },
                             validate: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter your password';
+                              } else if (value.length < 6) {
+                                return 'Password must be at least 6 characters';
                               }
                               return null;
                             },
@@ -133,7 +168,8 @@ class SignUpBody extends StatelessWidget {
                           DefaultTextButton(
                             text: 'Already have an account',
                             function: () {
-                              navigateTo(context, const SignInScreen());
+                              navigateTo(context, const SignInScreen(),
+                                  const Duration(milliseconds: 1));
                             },
                             presstext: 'Sign In',
                           ),
