@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/Features/Splash/Presentation/Views/Splash_screen.dart';
-import 'package:ecommerce_app/Features/auth/presentations/manager/cubit/user_data_cubit.dart';
+import 'package:ecommerce_app/Features/auth/presentations/manager/sign%20in%20cubit/sign_in_cubit.dart';
+import 'package:ecommerce_app/Features/auth/presentations/manager/sign%20up%20cubit/user_data_cubit.dart';
 import 'package:ecommerce_app/bloc_observer.dart';
 import 'package:ecommerce_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,8 +23,15 @@ class ECommerceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => UserDataCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => UserDataCubit(),
+        ),
+        BlocProvider(
+          create: (context) => SignInCubit(),
+        ),
+      ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(

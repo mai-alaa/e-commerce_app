@@ -2,8 +2,8 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:ecommerce_app/Core/utils/functions/navigation.dart';
 import 'package:ecommerce_app/Core/utils/functions/toasts_message.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
-import 'package:ecommerce_app/Features/auth/presentations/manager/cubit/user_data_cubit.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/sign_in_screen.dart';
+import 'package:ecommerce_app/Features/auth/presentations/manager/sign%20up%20cubit/user_data_cubit.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/widget/background_auth.dart';
 import 'package:ecommerce_app/Core/widgets/custom_textFormFeiled.dart';
 import 'package:ecommerce_app/Core/widgets/default_button.dart';
@@ -93,7 +93,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                             prefix: Icons.email,
                             validate: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your email';
+                                return emailValidationText.data;
                               }
                               return null;
                             },
@@ -123,7 +123,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                             },
                             validate: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your password';
+                                return passValidationText.data;
                               } else if (value.length < 6) {
                                 return 'Password must be at least 6 characters';
                               }
