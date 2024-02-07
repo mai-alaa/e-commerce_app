@@ -43,7 +43,7 @@ class SignInCubit extends Cubit<SignInState> {
 
   void changePasswordVisibilty() {
     isPass = !isPass;
-    suffix = isPass ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    suffix = isPass ? Icons.visibility_off_outlined : Icons.visibility_outlined;
     emit(SignInChangePasswordVisibilityState());
   }
 }

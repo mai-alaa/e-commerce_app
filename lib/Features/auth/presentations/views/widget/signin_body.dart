@@ -1,4 +1,5 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:ecommerce_app/Core/network/local/cache_helper.dart';
 import 'package:ecommerce_app/Core/utils/assets.dart';
 import 'package:ecommerce_app/Core/utils/functions/navigation.dart';
 import 'package:ecommerce_app/Core/utils/functions/toasts_message.dart';
@@ -9,7 +10,7 @@ import 'package:ecommerce_app/Features/auth/presentations/views/widget/backgroun
 import 'package:ecommerce_app/Core/widgets/custom_textFormFeiled.dart';
 import 'package:ecommerce_app/Core/widgets/default_button.dart';
 import 'package:ecommerce_app/Core/widgets/default_textButton.dart';
-import 'package:ecommerce_app/Features/home/presentation/views/home_screen_view.dart';
+import 'package:ecommerce_app/Features/home/presentation/views/widgets/custom_bottom_nav.dart';
 import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,8 +35,10 @@ class _SignInBodyState extends State<SignInBody> {
       child: BlocConsumer<SignInCubit, SignInState>(
         listener: (context, state) {
           if (state is SignInSuccessState) {
-            navigateTo(
-                context, const HomeScreen(), const Duration(microseconds: 1));
+            CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
+              navigateTo(context, const LayoutScreen(),
+                  const Duration(microseconds: 1));
+            });
           }
           if (state is SignInFailureState) {
             showToast(text: state.error, state: ToastStates.error);

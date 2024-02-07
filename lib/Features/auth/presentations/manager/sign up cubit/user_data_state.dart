@@ -19,3 +19,5 @@ final class CreateUserSucessState extends UserDataState {
   final String? uId;
   CreateUserSucessState(this.uId);
 }
+
+final class ChangePassVisibilityState extends UserDataState {}

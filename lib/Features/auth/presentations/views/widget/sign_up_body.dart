@@ -1,4 +1,5 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:ecommerce_app/Core/network/local/cache_helper.dart';
 import 'package:ecommerce_app/Core/utils/functions/navigation.dart';
 import 'package:ecommerce_app/Core/utils/functions/toasts_message.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
@@ -8,7 +9,7 @@ import 'package:ecommerce_app/Features/auth/presentations/views/widget/backgroun
 import 'package:ecommerce_app/Core/widgets/custom_textFormFeiled.dart';
 import 'package:ecommerce_app/Core/widgets/default_button.dart';
 import 'package:ecommerce_app/Core/widgets/default_textButton.dart';
-import 'package:ecommerce_app/Features/home/presentation/views/home_screen_view.dart';
+import 'package:ecommerce_app/Features/home/presentation/views/widgets/custom_bottom_nav.dart';
 import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,9 +41,10 @@ class _SignUpBodyState extends State<SignUpBody> {
       child: BlocConsumer<UserDataCubit, UserDataState>(
         listener: (context, state) {
           if (state is CreateUserSucessState) {
+            CacheHelper.saveData(key: 'uId', value: state.uId);
             navigateTo(
               context,
-              const HomeScreen(),
+              const LayoutScreen(),
               const Duration(microseconds: 1),
             );
           }
@@ -112,14 +114,12 @@ class _SignUpBodyState extends State<SignUpBody> {
                             },
                             type: TextInputType.emailAddress,
                             label: 'Password',
+                            isPassword: UserDataCubit.get(context).isPass,
                             prefix: Icons.password,
-                            suffix: isPass
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined,
+                            suffix: UserDataCubit.get(context).suffix,
                             suffixPressed: () {
-                              setState(() {
-                                isPass = !isPass;
-                              });
+                              UserDataCubit.get(context)
+                                  .changePasswordVisibility();
                             },
                             validate: (value) {
                               if (value == null || value.isEmpty) {
@@ -129,7 +129,6 @@ class _SignUpBodyState extends State<SignUpBody> {
                               }
                               return null;
                             },
-                            isPassword: false,
                           ),
                           space30,
                           CustomTextFormFeiled(
