@@ -2,7 +2,7 @@ import 'package:ecommerce_app/Core/network/local/cache_helper.dart';
 import 'package:ecommerce_app/Core/utils/functions/navigation.dart';
 import 'package:ecommerce_app/Core/widgets/default_button.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/sign_in_screen.dart';
-import 'package:ecommerce_app/Features/home/presentation/views/widgets/custom_button.dart';
+
 import 'package:flutter/material.dart';
 
 class MenuView extends StatelessWidget {
@@ -18,7 +18,8 @@ class MenuView extends StatelessWidget {
               key: 'uId',
             ).then((value) {
               if (value) {
-                navigateTo(context, SignInScreen(), Duration(milliseconds: 1));
+                navigateTo(context, const SignInScreen(),
+                    const Duration(milliseconds: 1));
               }
             });
           },

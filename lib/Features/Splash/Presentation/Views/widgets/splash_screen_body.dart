@@ -1,9 +1,9 @@
 import 'package:ecommerce_app/Core/network/local/cache_helper.dart';
 import 'package:ecommerce_app/Features/Splash/Presentation/Views/widgets/SlidingImage.dart';
 import 'package:ecommerce_app/Features/auth/presentations/views/sign_in_screen.dart';
-import 'package:ecommerce_app/Features/home/presentation/views/home_screen_view.dart';
+
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/custom_bottom_nav.dart';
-import 'package:ecommerce_app/Features/home/presentation/views/widgets/home_screen_body.dart';
+
 import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
