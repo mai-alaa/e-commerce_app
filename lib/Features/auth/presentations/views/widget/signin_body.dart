@@ -14,6 +14,8 @@ import 'package:ecommerce_app/Features/home/presentation/views/widgets/custom_bo
 import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 class SignInBody extends StatefulWidget {
   const SignInBody({super.key});
@@ -36,8 +38,7 @@ class _SignInBodyState extends State<SignInBody> {
         listener: (context, state) {
           if (state is SignInSuccessState) {
             CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
-              navigateTo(context, const LayoutScreen(),
-                  const Duration(microseconds: 1));
+              defaultNavigate(context);
             });
           }
           if (state is SignInFailureState) {
@@ -45,6 +46,8 @@ class _SignInBodyState extends State<SignInBody> {
           }
         },
         builder: (context, state) {
+          SignInCubit cubit = SignInCubit.get(context);
+
           return Stack(
             children: [
               const BackgroundAuth(),
@@ -122,7 +125,15 @@ class _SignInBodyState extends State<SignInBody> {
                           spacehight,
                           DefaultButton(
                             text: 'Sign In with Google',
-                            onPressed: () {},
+                            onPressed: () {
+                              SignInCubit.get(context).signInWithGoogle();
+                              if (state is SignInSuccessState) {
+                                defaultNavigate(context);
+                              } else {
+                                Get.snackbar('Errore',
+                                    'There is an error in signning in');
+                              }
+                            },
                             image: AssetsData.googleIcon,
                           ),
                           spacehight,
@@ -144,7 +155,10 @@ class _SignInBodyState extends State<SignInBody> {
                           spacehight,
                           DefaultButton(
                             text: 'Continue as a guest',
-                            onPressed: () {},
+                            onPressed: () {
+                              SignInCubit.get(context).signInAnomnous();
+                              defaultNavigate(context);
+                            },
                             image: null,
                             buttonColor: Colors.black,
                           ),
@@ -167,5 +181,10 @@ class _SignInBodyState extends State<SignInBody> {
         },
       ),
     );
+  }
+
+  void defaultNavigate(BuildContext context) {
+    return navigateTo(
+        context, const LayoutScreen(), const Duration(microseconds: 1));
   }
 }

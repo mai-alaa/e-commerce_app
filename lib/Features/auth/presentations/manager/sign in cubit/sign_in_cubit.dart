@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 
 part 'sign_in_state.dart';
@@ -10,6 +11,7 @@ class SignInCubit extends Cubit<SignInState> {
   static SignInCubit get(context) => BlocProvider.of(context);
   bool isPass = true;
   IconData suffix = Icons.visibility_outlined;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
 
   Future<void> signUser(
       {required String email, required String password}) async {
@@ -38,6 +40,43 @@ class SignInCubit extends Cubit<SignInState> {
         error = e.code.toString();
       }
       emit(SignInFailureState(error));
+    }
+  }
+
+  Future<void> signInAnomnous() async {
+    try {
+      await FirebaseAuth.instance.signInAnonymously();
+      print("Signed in with temporary account.");
+      // emit(SignInAnomnousSucessState());
+    } on FirebaseAuthException catch (e) {
+      print(e.toString());
+      emit(SignInAnomnousFailureState(e.toString()));
+    }
+  }
+
+  Future<void> signInWithGoogle() async {
+    emit(SignInLoadingState()); // Emit loading state
+
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount!.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+
+      emit(SignInSuccessState(userCredential.user?.uid)); // Emit success state
+    } catch (e) {
+      print(e.toString());
+      // Handle error
+      emit(SignInFailureState(
+          e.toString())); // Emit failure state with error message
     }
   }
 

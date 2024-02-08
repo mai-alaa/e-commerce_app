@@ -20,3 +20,13 @@ final class SignInFailureState extends SignInState {
 }
 
 final class SignInChangePasswordVisibilityState extends SignInState {}
+
+final class SignInAnomnousState extends SignInState {}
+
+final class SignInAnomnousSucessState extends SignInState {}
+
+// ignore: must_be_immutable
+final class SignInAnomnousFailureState extends SignInState {
+  late String e;
+  SignInAnomnousFailureState(this.e);
+}
