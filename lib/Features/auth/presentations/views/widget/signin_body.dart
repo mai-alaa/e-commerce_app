@@ -46,8 +46,6 @@ class _SignInBodyState extends State<SignInBody> {
           }
         },
         builder: (context, state) {
-          SignInCubit cubit = SignInCubit.get(context);
-
           return Stack(
             children: [
               const BackgroundAuth(),
