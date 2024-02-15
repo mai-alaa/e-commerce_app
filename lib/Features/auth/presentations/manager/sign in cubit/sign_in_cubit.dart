@@ -10,7 +10,7 @@ class SignInCubit extends Cubit<SignInState> {
   SignInCubit() : super(SignInInitial());
   static SignInCubit get(context) => BlocProvider.of(context);
   bool isPass = true;
-  IconData suffix = Icons.visibility_outlined;
+  IconData suffix = Icons.visibility_off_outlined;
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
   Future<void> signUser(
@@ -44,6 +44,7 @@ class SignInCubit extends Cubit<SignInState> {
   }
 
   Future<void> signInAnomnous() async {
+    emit(SignInAnomnousLoadingState());
     try {
       await FirebaseAuth.instance.signInAnonymously();
       print("Signed in with temporary account.");
@@ -55,7 +56,7 @@ class SignInCubit extends Cubit<SignInState> {
   }
 
   Future<void> signInWithGoogle() async {
-    emit(SignInLoadingState()); // Emit loading state
+    emit(SignInWithGoogleLoadingState()); // Emit loading state
 
     try {
       final GoogleSignInAccount? googleSignInAccount =

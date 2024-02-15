@@ -7,6 +7,10 @@ final class SignInInitial extends SignInState {}
 
 final class SignInLoadingState extends SignInState {}
 
+final class SignInAnomnousLoadingState extends SignInState {}
+
+final class SignInWithGoogleLoadingState extends SignInState {}
+
 final class SignInSuccessState extends SignInState {
   final String? uId;
 

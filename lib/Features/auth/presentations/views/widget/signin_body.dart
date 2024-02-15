@@ -1,4 +1,5 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:ecommerce_app/Core/network/local/cache_helper.dart';
 import 'package:ecommerce_app/Core/utils/assets.dart';
 import 'package:ecommerce_app/Core/utils/functions/navigation.dart';
@@ -10,6 +11,7 @@ import 'package:ecommerce_app/Features/auth/presentations/views/widget/backgroun
 import 'package:ecommerce_app/Core/widgets/custom_textFormFeiled.dart';
 import 'package:ecommerce_app/Core/widgets/default_button.dart';
 import 'package:ecommerce_app/Core/widgets/default_textButton.dart';
+import 'package:ecommerce_app/Features/auth/presentations/views/widget/default_conditional_builder.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/custom_bottom_nav.dart';
 import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
@@ -17,17 +19,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
-class SignInBody extends StatefulWidget {
-  const SignInBody({super.key});
+class SignInBody extends StatelessWidget {
+  SignInBody({super.key});
 
-  @override
-  State<SignInBody> createState() => _SignInBodyState();
-}
-
-class _SignInBodyState extends State<SignInBody> {
   var emailAddressController = TextEditingController();
 
   var passwordController = TextEditingController();
+
   var formKey = GlobalKey<FormState>();
 
   @override
@@ -102,7 +100,7 @@ class _SignInBodyState extends State<SignInBody> {
                             },
                           ),
                           space50,
-                          ConditionalBuilder(
+                          CustomConditionalBuilder(
                             builder: (context) {
                               return DefaultButton(
                                 text: 'Sign In',
@@ -117,23 +115,25 @@ class _SignInBodyState extends State<SignInBody> {
                               );
                             },
                             condition: state is! SignInLoadingState,
-                            fallback: (BuildContext context) => const Center(
-                                child: CircularProgressIndicator()),
                           ),
                           spacehight,
-                          DefaultButton(
-                            text: 'Sign In with Google',
-                            onPressed: () {
-                              SignInCubit.get(context).signInWithGoogle();
-                              if (state is SignInSuccessState) {
-                                defaultNavigate(context);
-                              } else {
-                                Get.snackbar('Errore',
-                                    'There is an error in signning in');
-                              }
-                            },
-                            image: AssetsData.googleIcon,
-                          ),
+                          CustomConditionalBuilder(
+                              condition: state is! SignInWithGoogleLoadingState,
+                              builder: (context) {
+                                return DefaultButton(
+                                  text: 'Sign In with Google',
+                                  onPressed: () {
+                                    SignInCubit.get(context).signInWithGoogle();
+                                    if (state is SignInSuccessState) {
+                                      defaultNavigate(context);
+                                    } else {
+                                      Get.snackbar('Errore',
+                                          'There is an error in signning in');
+                                    }
+                                  },
+                                  image: AssetsData.googleIcon,
+                                );
+                              }),
                           spacehight,
                           const Row(
                             children: [
@@ -151,14 +151,19 @@ class _SignInBodyState extends State<SignInBody> {
                             ],
                           ),
                           spacehight,
-                          DefaultButton(
-                            text: 'Continue as a guest',
-                            onPressed: () {
-                              SignInCubit.get(context).signInAnomnous();
-                              defaultNavigate(context);
+                          CustomConditionalBuilder(
+                            condition: state is! SignInAnomnousLoadingState,
+                            builder: (BuildContext context) {
+                              return DefaultButton(
+                                text: 'Continue as a guest',
+                                onPressed: () {
+                                  SignInCubit.get(context).signInAnomnous();
+                                  defaultNavigate(context);
+                                },
+                                image: null,
+                                buttonColor: Colors.black,
+                              );
                             },
-                            image: null,
-                            buttonColor: Colors.black,
                           ),
                           DefaultTextButton(
                             text: 'Don\'t have an account?',
